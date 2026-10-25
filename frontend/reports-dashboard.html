@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reports Dashboard | ShieldPoint</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="topbar"><a class="brand" href="index.html"><span>⬡</span> ShieldPoint Security</a><a class="nav-login" href="index.html">Home</a></header>
+<main class="page-shell">
+<a class="back-link" href="index.html#dashboard">← Back to Dashboard</a>
+<div class="form-panel"><span class="eyebrow">MODULE 06</span><h1>Reports and Dashboard</h1><p>Record counts and sample attendance report.</p></div>
+<div class="dashboard-panel" style="margin-top:20px">
+<div class="metric-grid">
+<div class="metric"><span>Guard records</span><strong id="guardCount">0</strong></div>
+<div class="metric"><span>Roster records</span><strong id="rosterCount">0</strong></div>
+<div class="metric"><span>Attendance records</span><strong id="attendanceCount">0</strong></div>
+<div class="metric"><span>Invoice records</span><strong id="invoiceCount">0</strong></div>
+</div>
+<div class="table-wrap" style="margin-top:24px">
+<table><thead><tr><th>Guard</th><th>Site</th><th>Date</th><th>Status</th></tr></thead><tbody id="attendanceRows"></tbody></table>
+</div>
+<button class="btn btn-dark" style="margin-top:20px" onclick="window.print()">Print Report</button>
+</div>
+</main>
+<script>
+function read(key) {
+  try { return JSON.parse(localStorage.getItem(key) || "[]"); }
+  catch { return []; }
+}
+const guards = read("sp_guards");
+const rosters = read("sp_rosters");
+const attendance = read("sp_attendance");
+const invoices = read("sp_invoices");
+document.getElementById("guardCount").textContent = guards.length;
+document.getElementById("rosterCount").textContent = rosters.length;
+document.getElementById("attendanceCount").textContent = attendance.length;
+document.getElementById("invoiceCount").textContent = invoices.length;
+const esc = value => String(value ?? "").replace(/[&<>"']/g, c =>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"})[c]
+);
+document.getElementById("attendanceRows").innerHTML = attendance.length
+  ? attendance.map(row => `<tr><td>${esc(row.guardName)}</td><td>${esc(row.siteName)}</td><td>${esc(row.shiftDate)}</td><td>${esc(row.status)}</td></tr>`).join("")
+  : '<tr><td colspan="4">No attendance records saved yet.</td></tr>';
+</script>
+</body>
+</html>

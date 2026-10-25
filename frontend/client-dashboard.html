@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Client Dashboard | ShieldPoint</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
+<body>
+<header class="topbar"><a class="brand" href="index.html">⬡ ShieldPoint Security</a><button class="btn btn-outline" id="logoutButton" type="button">Logout / लॉगआउट</button></header>
+<main class="page-shell">
+<header class="page-header"><span class="eyebrow">CLIENT PORTAL</span><h1>Client Dashboard / ग्राहक डॅशबोर्ड</h1><p>View client-related pages and agency information.</p><p id="signedInUser" class="form-note"></p></header>
+<section class="form-panel"><h2>Quick Links / महत्त्वाच्या लिंक</h2><div class="dashboard-links"><a class="dashboard-link" href="client-invoice.html">Invoices / बिल</a><a class="dashboard-link" href="reports.html">Reports / अहवाल</a><a class="dashboard-link" href="index.html#workflow">Agency Services / सेवा</a></div><p class="form-note">This is a starter dashboard. Some linked pages may still use demo/browser-only data. / हा सुरुवातीचा डॅशबोर्ड आहे.</p></section>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const role = localStorage.getItem('userRole');
+  const expected = 'Client';
+  if (role !== expected) { window.location.replace('login.html'); return; }
+  const email = localStorage.getItem('userEmail') || '';
+  const user = document.getElementById('signedInUser');
+  if (user) user.textContent = email ? 'Signed in as: ' + email : '';
+  document.getElementById('logoutButton').addEventListener('click', () => {
+    localStorage.removeItem('token'); localStorage.removeItem('userRole'); localStorage.removeItem('userEmail');
+    window.location.href = 'login.html';
+  });
+});
+</script>
+</body></html>

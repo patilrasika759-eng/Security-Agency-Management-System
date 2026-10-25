@@ -1,0 +1,234 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Management</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .client-container { max-width: 1100px; margin: 30px auto; padding: 20px; }
+        .client-form { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 15px; }
+        .client-form label { display: block; margin-bottom: 6px; font-weight: 600; }
+        .client-form input, .client-form select, .client-form textarea {
+            width: 100%; padding: 10px; border: 1px solid #ccc;
+            border-radius: 6px; box-sizing: border-box;
+        }
+        .client-form textarea { min-height: 80px; }
+        .client-actions { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .client-table-wrap { overflow-x: auto; margin-top: 20px; }
+        .client-table { width: 100%; border-collapse: collapse; }
+        .client-table th, .client-table td { padding: 11px; border: 1px solid #ddd; text-align: left; }
+        .client-table th { background: #172238; color: white; }
+        .client-message { margin-top: 12px; }
+    </style>
+</head>
+<body>
+    <main class="client-container">
+        <h1>Client Management / ग्राहक व्यवस्थापन</h1>
+        <p>सुरक्षा सेवा घेणाऱ्या ग्राहकांची माहिती व्यवस्थापित करा.</p>
+        <p><a href="admin-dashboard.html">← Back to Admin Dashboard</a></p>
+
+        <section class="admin-panel">
+            <h2 id="formTitle">Add New Client</h2>
+            <form id="clientForm">
+                <input type="hidden" id="editId">
+
+                <div class="client-form">
+                    <div>
+                        <label for="clientCode">Client ID *</label>
+                        <input id="clientCode" required maxlength="30" placeholder="CL001">
+                    </div>
+                    <div>
+                        <label for="clientName">Client / Company Name *</label>
+                        <input id="clientName" required maxlength="100" placeholder="Company Name">
+                    </div>
+                    <div>
+                        <label for="contactPerson">Contact Person</label>
+                        <input id="contactPerson" maxlength="100" placeholder="Contact person's name">
+                    </div>
+                    <div>
+                        <label for="phone">Phone Number *</label>
+                        <input id="phone" type="tel" required maxlength="20" placeholder="Phone number">
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input id="email" type="email" maxlength="150" placeholder="name@example.com">
+                    </div>
+                    <div>
+                        <label for="status">Status</label>
+                        <select id="status">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="address">Address *</label>
+                        <textarea id="address" required maxlength="300" placeholder="Full address"></textarea>
+                    </div>
+                </div>
+
+                <div class="client-actions">
+                    <button type="submit" class="btn btn-gold">Save Client</button>
+                    <button type="button" class="btn" id="resetBtn">Clear</button>
+                </div>
+                <p id="message" class="client-message" role="status"></p>
+            </form>
+        </section>
+
+        <section class="admin-panel" style="margin-top:25px;">
+            <h2>Registered Clients / नोंदणीकृत ग्राहक</h2>
+            <div class="client-table-wrap">
+                <table class="client-table">
+                    <thead>
+                        <tr>
+                            <th>Client ID</th>
+                            <th>Name</th>
+                            <th>Contact Person</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientRows"></tbody>
+                </table>
+            </div>
+            <p id="emptyMessage">No client records yet.</p>
+        </section>
+    </main>
+
+    <script>
+        const STORAGE_KEY = "securityAgencyClients";
+        const form = document.getElementById("clientForm");
+        const message = document.getElementById("message");
+
+        function getClients() {
+            try {
+                const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+                return Array.isArray(data) ? data : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function renderClients() {
+            const clients = getClients();
+            const tbody = document.getElementById("clientRows");
+            tbody.replaceChildren();
+            document.getElementById("emptyMessage").hidden = clients.length > 0;
+
+            clients.forEach(client => {
+                const row = document.createElement("tr");
+
+                [
+                    client.code, client.name, client.contactPerson,
+                    client.phone, client.email, client.address, client.status
+                ].forEach(value => {
+                    const cell = document.createElement("td");
+                    cell.textContent = value || "-";
+                    row.appendChild(cell);
+                });
+
+                const actions = document.createElement("td");
+
+                const edit = document.createElement("button");
+                edit.type = "button";
+                edit.textContent = "Edit";
+                edit.addEventListener("click", () => editClient(client.id));
+
+                const remove = document.createElement("button");
+                remove.type = "button";
+                remove.textContent = "Delete";
+                remove.addEventListener("click", () => deleteClient(client.id));
+
+                actions.append(edit, document.createTextNode(" "), remove);
+                row.appendChild(actions);
+                tbody.appendChild(row);
+            });
+        }
+
+        form.addEventListener("submit", event => {
+            event.preventDefault();
+
+            const clients = getClients();
+            const editId = document.getElementById("editId").value;
+            const code = document.getElementById("clientCode").value.trim();
+
+            const duplicate = clients.some(client =>
+                client.code.toLowerCase() === code.toLowerCase() &&
+                client.id !== editId
+            );
+
+            if (duplicate) {
+                message.textContent = "This Client ID already exists.";
+                return;
+            }
+
+            const record = {
+                id: editId || (
+                    crypto.randomUUID ? crypto.randomUUID() : String(Date.now())
+                ),
+                code,
+                name: document.getElementById("clientName").value.trim(),
+                contactPerson: document.getElementById("contactPerson").value.trim(),
+                phone: document.getElementById("phone").value.trim(),
+                email: document.getElementById("email").value.trim(),
+                address: document.getElementById("address").value.trim(),
+                status: document.getElementById("status").value
+            };
+
+            const updated = editId
+                ? clients.map(client => client.id === editId ? record : client)
+                : [...clients, record];
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+            resetForm();
+            renderClients();
+            message.textContent = "Client saved in this browser.";
+        });
+
+        function editClient(id) {
+            const client = getClients().find(item => item.id === id);
+            if (!client) return;
+
+            document.getElementById("editId").value = client.id;
+            document.getElementById("clientCode").value = client.code;
+            document.getElementById("clientName").value = client.name;
+            document.getElementById("contactPerson").value = client.contactPerson;
+            document.getElementById("phone").value = client.phone;
+            document.getElementById("email").value = client.email;
+            document.getElementById("address").value = client.address;
+            document.getElementById("status").value = client.status;
+            document.getElementById("formTitle").textContent = "Edit Client";
+            message.textContent = "";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function deleteClient(id) {
+            if (!confirm("Delete this client record?")) return;
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(getClients().filter(client => client.id !== id))
+            );
+            renderClients();
+            message.textContent = "Client deleted from this browser.";
+        }
+
+        function resetForm() {
+            form.reset();
+            document.getElementById("editId").value = "";
+            document.getElementById("formTitle").textContent = "Add New Client";
+        }
+
+        document.getElementById("resetBtn").addEventListener("click", () => {
+            resetForm();
+            message.textContent = "";
+        });
+
+        renderClients();
+    </script>
+</body>
+</html>

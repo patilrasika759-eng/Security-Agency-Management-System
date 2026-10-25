@@ -1,0 +1,219 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Management</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .site-container { max-width: 1100px; margin: 30px auto; padding: 20px; }
+        .site-form { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 15px; }
+        .site-form label { display: block; margin-bottom: 6px; font-weight: 600; }
+        .site-form input, .site-form select, .site-form textarea {
+            width: 100%; padding: 10px; border: 1px solid #ccc;
+            border-radius: 6px; box-sizing: border-box;
+        }
+        .site-form textarea { min-height: 80px; }
+        .site-actions { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .site-table-wrap { overflow-x: auto; margin-top: 20px; }
+        .site-table { width: 100%; border-collapse: collapse; }
+        .site-table th, .site-table td { padding: 11px; border: 1px solid #ddd; text-align: left; }
+        .site-table th { background: #172238; color: white; }
+        .site-message { margin-top: 12px; }
+    </style>
+</head>
+<body>
+    <main class="site-container">
+        <h1>Site Management / साइट व्यवस्थापन</h1>
+        <p>नोंदणीकृत सुरक्षा साइटची माहिती जोडा आणि व्यवस्थापित करा.</p>
+        <p><a href="admin-dashboard.html">← Back to Admin Dashboard</a></p>
+
+        <section class="admin-panel">
+            <h2 id="formTitle">Add New Site</h2>
+            <form id="siteForm">
+                <input type="hidden" id="editId">
+
+                <div class="site-form">
+                    <div>
+                        <label for="siteCode">Site Code *</label>
+                        <input id="siteCode" required maxlength="30" placeholder="SITE001">
+                    </div>
+                    <div>
+                        <label for="siteName">Site Name *</label>
+                        <input id="siteName" required maxlength="100" placeholder="Office / Building Name">
+                    </div>
+                    <div>
+                        <label for="clientName">Client Name</label>
+                        <input id="clientName" maxlength="100" placeholder="Client / Company">
+                    </div>
+                    <div>
+                        <label for="contact">Contact Number</label>
+                        <input id="contact" type="tel" maxlength="20" placeholder="Contact number">
+                    </div>
+                    <div>
+                        <label for="siteStatus">Status</label>
+                        <select id="siteStatus">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="siteAddress">Site Address *</label>
+                        <textarea id="siteAddress" required maxlength="300" placeholder="Full site address"></textarea>
+                    </div>
+                </div>
+
+                <div class="site-actions">
+                    <button type="submit" class="btn btn-gold">Save Site</button>
+                    <button type="button" class="btn" id="resetBtn">Clear</button>
+                </div>
+                <p class="site-message" id="message" role="status"></p>
+            </form>
+        </section>
+
+        <section class="admin-panel" style="margin-top:25px;">
+            <h2>Registered Sites / नोंदणीकृत साइट्स</h2>
+            <div class="site-table-wrap">
+                <table class="site-table">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Site Name</th>
+                            <th>Client</th>
+                            <th>Contact</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="siteRows"></tbody>
+                </table>
+            </div>
+            <p id="emptyMessage">No site records yet.</p>
+        </section>
+    </main>
+
+    <script>
+        const STORAGE_KEY = "securityAgencySites";
+        const form = document.getElementById("siteForm");
+        const message = document.getElementById("message");
+
+        function getSites() {
+            try {
+                const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+                return Array.isArray(data) ? data : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function renderSites() {
+            const sites = getSites();
+            const tbody = document.getElementById("siteRows");
+            tbody.replaceChildren();
+            document.getElementById("emptyMessage").hidden = sites.length > 0;
+
+            sites.forEach(site => {
+                const row = document.createElement("tr");
+                [site.code, site.name, site.client, site.contact, site.address, site.status]
+                    .forEach(value => {
+                        const cell = document.createElement("td");
+                        cell.textContent = value || "-";
+                        row.appendChild(cell);
+                    });
+
+                const actions = document.createElement("td");
+                const edit = document.createElement("button");
+                edit.type = "button";
+                edit.textContent = "Edit";
+                edit.addEventListener("click", () => editSite(site.id));
+
+                const remove = document.createElement("button");
+                remove.type = "button";
+                remove.textContent = "Delete";
+                remove.addEventListener("click", () => deleteSite(site.id));
+
+                actions.append(edit, document.createTextNode(" "), remove);
+                row.appendChild(actions);
+                tbody.appendChild(row);
+            });
+        }
+
+        form.addEventListener("submit", event => {
+            event.preventDefault();
+
+            const sites = getSites();
+            const editId = document.getElementById("editId").value;
+            const code = document.getElementById("siteCode").value.trim();
+
+            const duplicate = sites.some(site =>
+                site.code.toLowerCase() === code.toLowerCase() && site.id !== editId
+            );
+
+            if (duplicate) {
+                message.textContent = "This Site Code already exists.";
+                return;
+            }
+
+            const record = {
+                id: editId || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())),
+                code,
+                name: document.getElementById("siteName").value.trim(),
+                client: document.getElementById("clientName").value.trim(),
+                contact: document.getElementById("contact").value.trim(),
+                address: document.getElementById("siteAddress").value.trim(),
+                status: document.getElementById("siteStatus").value
+            };
+
+            const updated = editId
+                ? sites.map(site => site.id === editId ? record : site)
+                : [...sites, record];
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+            resetForm();
+            renderSites();
+            message.textContent = "Site saved in this browser.";
+        });
+
+        function editSite(id) {
+            const site = getSites().find(item => item.id === id);
+            if (!site) return;
+
+            document.getElementById("editId").value = site.id;
+            document.getElementById("siteCode").value = site.code;
+            document.getElementById("siteName").value = site.name;
+            document.getElementById("clientName").value = site.client;
+            document.getElementById("contact").value = site.contact;
+            document.getElementById("siteAddress").value = site.address;
+            document.getElementById("siteStatus").value = site.status;
+            document.getElementById("formTitle").textContent = "Edit Site";
+            message.textContent = "";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function deleteSite(id) {
+            if (!confirm("Delete this site record?")) return;
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(getSites().filter(site => site.id !== id))
+            );
+            renderSites();
+            message.textContent = "Site deleted from this browser.";
+        }
+
+        function resetForm() {
+            form.reset();
+            document.getElementById("editId").value = "";
+            document.getElementById("formTitle").textContent = "Add New Site";
+        }
+
+        document.getElementById("resetBtn").addEventListener("click", () => {
+            resetForm();
+            message.textContent = "";
+        });
+
+        renderSites();
+    </script>
+</body>
+</html>

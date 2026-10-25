@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard </title>
+    <link rel="stylesheet" href="style.css">
+    <script src="admin-dashboard.js" defer></script>
+</head>
+<body class="admin-page">
+
+<div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+        <a class="brand admin-brand" href="index.html">
+            ⬡ Security Guard Agency
+        </a>
+
+        <p class="admin-sidebar-label"
+           data-en="ADMINISTRATION"
+           data-mr="प्रशासन">
+            ADMINISTRATION
+        </p>
+
+        <nav class="admin-nav">
+            <a class="admin-nav-link active" href="#overview">
+                <span>▦</span>
+                <span data-en="Dashboard" data-mr="डॅशबोर्ड">Dashboard</span>
+            </a>
+            <a class="admin-nav-link" href="#guards">
+                <span>♟</span>
+                <span data-en="Guard Management" data-mr="रक्षक व्यवस्थापन">Guard Management</span>
+            </a>
+            <a class="admin-nav-link" href="#clients">
+                <span>▣</span>
+                <span data-en="Client Management" data-mr="ग्राहक व्यवस्थापन">Client Management</span>
+            </a>
+            <a class="admin-nav-link" href="#sites">
+                <span>⌖</span>
+                <span data-en="Site Management" data-mr="साइट व्यवस्थापन">Site Management</span>
+            </a>
+            <a class="admin-nav-link" href="#shifts">
+                <span>◷</span>
+                <span data-en="Shift Roster" data-mr="शिफ्ट नियोजन">Shift Roster</span>
+            </a>
+            <a class="admin-nav-link" href="#attendance">
+                <span>✓</span>
+                <span data-en="Attendance" data-mr="उपस्थिती">Attendance</span>
+            </a>
+            <a class="admin-nav-link" href="#incidents">
+                <span>⚑</span>
+                <span data-en="Incident Reports" data-mr="घटना अहवाल">Incident Reports</span>
+            </a>
+            <a class="admin-nav-link" href="#payroll">
+                <span>₹</span>
+                <span data-en="Payroll" data-mr="पगार">Payroll</span>
+            </a>
+            <a class="admin-nav-link" href="#invoices">
+                <span>▤</span>
+                <span data-en="Invoices & Billing" data-mr="बिले आणि बिलिंग">Invoices & Billing</span>
+            </a>
+            <a class="admin-nav-link" href="#reports">
+                <span>▥</span>
+                <span data-en="Reports" data-mr="अहवाल">Reports</span>
+            </a>
+            <a class="admin-nav-link" href="#settings">
+                <span>⚙</span>
+                <span data-en="Settings & Audit" data-mr="सेटिंग्ज आणि नोंद इतिहास">Settings & Audit</span>
+            </a>
+        </nav>
+
+        <div class="admin-sidebar-bottom">
+            <p data-en="SECURE ADMIN ACCESS"
+               data-mr="सुरक्षित प्रशासकीय प्रवेश">
+                SECURE ADMIN ACCESS
+            </p>
+            <a href="index.html">← <span data-en="Back to Home" data-mr="मुख्यपृष्ठावर जा">Back to Home</span></a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main" id="overview">
+
+        <header class="admin-topbar">
+            <div class="admin-topbar-title">
+                <button type="button" class="admin-menu-btn" id="adminMenuBtn"
+                        aria-label="Toggle navigation">☰</button>
+                <div>
+                    <h1 data-en="Admin Dashboard" data-mr="प्रशासक डॅशबोर्ड">Admin Dashboard</h1>
+                    <p data-en="Security operations overview"
+                       data-mr="सुरक्षा व्यवस्थापनाचा आढावा">
+                        Security operations overview
+                    </p>
+                </div>
+            </div>
+
+            <div class="admin-topbar-actions">
+                <button type="button" class="lang-btn" id="adminLanguageBtn">
+                    मराठी
+                </button>
+                <div class="admin-profile">
+                    <div class="admin-avatar">A</div>
+                    <div>
+                        <strong id="adminName">Administrator</strong>
+                        <small>Admin / प्रशासक</small>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-gold small-btn" id="adminLogoutBtn">
+                    Logout / बाहेर पडा
+                </button>
+            </div>
+        </header>
+
+        <div class="admin-content">
+
+            <!-- WELCOME -->
+            <section class="admin-welcome">
+                <div>
+                    <span class="eyebrow"
+                          data-en="SMART SECURITY OPERATIONS"
+                          data-mr="स्मार्ट सुरक्षा व्यवस्थापन">
+                        SMART SECURITY OPERATIONS
+                    </span>
+                    <h2 data-en="Welcome back, Admin."
+                        data-mr="पुन्हा स्वागत आहे, Admin.">
+                        Welcome back, Admin.
+                    </h2>
+                    <p data-en="Manage guards, clients, duty schedules and agency records from one connected platform."
+                       data-mr="रक्षक, ग्राहक, ड्युटीचे वेळापत्रक आणि एजन्सीच्या नोंदी एकाच प्रणालीतून व्यवस्थापित करा.">
+                        Manage guards, clients, duty schedules and agency records from one connected platform.
+                    </p>
+                </div>
+                <div class="admin-welcome-icon">⬡</div>
+            </section>
+
+            <!-- STATISTICS -->
+            <section class="admin-stats">
+                <article class="admin-stat-card">
+                    <div class="admin-stat-top">
+                        <span data-en="Total Guards" data-mr="एकूण रक्षक">Total Guards</span>
+                        <span class="admin-stat-icon">♟</span>
+                    </div>
+                    <strong id="statGuards">—</strong>
+                    <small data-en="Registered guard records"
+                           data-mr="नोंदणीकृत रक्षक">
+                        Registered guard records
+                    </small>
+                </article>
+
+                <article class="admin-stat-card">
+                    <div class="admin-stat-top">
+                        <span data-en="Active Clients" data-mr="सक्रिय ग्राहक">Active Clients</span>
+                        <span class="admin-stat-icon">▣</span>
+                    </div>
+                    <strong id="statClients">—</strong>
+                    <small data-en="Registered client records"
+                           data-mr="नोंदणीकृत ग्राहक">
+                        Registered client records
+                    </small>
+                </article>
+
+                <article class="admin-stat-card">
+                    <div class="admin-stat-top">
+                        <span data-en="Shift Assignments" data-mr="शिफ्ट वाटप">Shift Assignments</span>
+                        <span class="admin-stat-icon">◷</span>
+                    </div>
+                    <strong id="statShifts">—</strong>
+                    <small data-en="Recorded shift assignments"
+                           data-mr="नोंदवलेले शिफ्ट वाटप">
+                        Recorded shift assignments
+                    </small>
+                </article>
+
+                <article class="admin-stat-card">
+                    <div class="admin-stat-top">
+                        <span data-en="Attendance Records" data-mr="उपस्थिती नोंदी">Attendance Records</span>
+                        <span class="admin-stat-icon">✓</span>
+                    </div>
+                    <strong id="statAttendance">—</strong>
+                    <small data-en="Recorded attendance entries"
+                           data-mr="नोंदवलेली उपस्थिती">
+                        Recorded attendance entries
+                    </small>
+                </article>
+            </section>
+
+            <!-- MODULES -->
+            <section class="admin-panel" id="modules">
+                <div class="admin-section-heading">
+                    <div>
+                        <span class="eyebrow">CORE MODULES / मुख्य मॉड्यूल्स</span>
+                        <h2 data-en="Manage your operations"
+                            data-mr="तुमचे कामकाज व्यवस्थापित करा">
+                            Manage your operations
+                        </h2>
+                    </div>
+                    <span class="admin-module-count">09 MODULES</span>
+                </div>
+
+                <div class="admin-module-grid">
+
+                    <a class="admin-module-card" id="guards" href="guards.html">
+                        <span class="module-icon">♟</span>
+                        <h3 data-en="Guard Management" data-mr="रक्षक व्यवस्थापन">Guard Management</h3>
+                        <p data-en="Guard profiles and personnel records."
+                           data-mr="रक्षकांची माहिती आणि कर्मचारी नोंदी.">
+                            Guard profiles and personnel records.
+                        </p>
+                        <span class="admin-module-link">Manage guards →</span>
+                    </a>
+
+                    <a class="admin-module-card" id="clients" href="clients.html">
+                        <span class="module-icon">▣</span>
+                        <h3 data-en="Client Management" data-mr="ग्राहक व्यवस्थापन">Client Management</h3>
+                        <p data-en="Client details and security contracts."
+                           data-mr="ग्राहकांची माहिती आणि सुरक्षा करार.">
+                            Client details and security contracts.
+                        </p>
+                        <span class="admin-module-link">Manage clients →</span>
+                    </a>
+
+                    <a class="admin-module-card" id="sites" href="sites.html">
+                        <span class="module-icon">⌖</span>
+                        <h3 data-en="Site Management" data-mr="साइट व्यवस्थापन">Site Management</h3>
+                        <p data-en="Security locations and site assignments."
+                           data-mr="सुरक्षा ठिकाणे आणि साइटवरील नेमणुका.">
+                            Security locations and site assignments.
+                        </p>
+                        <span class="admin-module-link">Manage sites →</span>
+                    </a>
+
+                    <a class="admin-module-card" id="shifts" href="shift-roster.html">
+                        <span class="module-icon">◷</span>
+                        <h3 data-en="Shift Scheduling" data-mr="शिफ्ट नियोजन">Shift Scheduling</h3>
+                        <p data-en="Plan shifts and assign guards to duty."
+                           data-mr="शिफ्टचे नियोजन करा आणि रक्षक नेमा.">
+                            Plan shifts and assign guards to duty.
+                        </p>
+                        <span class="admin-module-link">Manage shifts →</span>
+                    </a>
+
+                    <a class="admin-module-card" id="attendance" href="attendance.html">
+                        <span class="module-icon">✓</span>
+                        <h3 data-en="Attendance Tracking" data-mr="उपस्थिती नोंद">Attendance Tracking</h3>
+                        <p data-en="Check-in, check-out and duty records."
+                           data-mr="येण्याची, जाण्याची वेळ आणि ड्युटी नोंदी.">
+                            Check-in, check-out and duty records.
+                        </p>
+                        <span class="admin-module-link">View attendance →</span>
+                    </a>
+
+                    <a class="admin-module-card" id="incidents" href="incidents.html">
+                        <span class="module-icon">⚑</span>
+                        <h3 data-en="Incident Reports" data-mr="घटना अहवाल">Incident Reports</h3>
+                        <p data-en="Record incidents and follow their status."
+                           data-mr="घटनांची नोंद करा आणि त्यांची स्थिती तपासा.">
+                            Record incidents and follow their status.
+                        </p>
+                        <span class="admin-module-link">View incidents →</span>
+                    </a>
+
+                    <a class="admin-module-card" id="payroll" href="payroll.html">
+                        <span class="module-icon">₹</span>
+                        <h3 data-en="Payroll Management" data-mr="पगार व्यवस्थापन">Payroll Management</h3>
+                        <p data-en="Maintain salary and payroll records."
+                           data-mr="पगार आणि वेतनाच्या नोंदी ठेवा.">
+                            Maintain salary and payroll records.
+                        </p>
+                        <span class="admin-module-link">Manage payroll →</span>
+                    </a>
+
+                    <a class="admin-module-card" id="invoices" href="client-invoice.html">
+                        <span class="module-icon">▤</span>
+                        <h3 data-en="Invoices & Billing" data-mr="बिले आणि बिलिंग">Invoices & Billing</h3>
+                        <p data-en="Client invoices, billing and payment records."
+                           data-mr="ग्राहकांची बिले, बिलिंग आणि पेमेंट नोंदी.">
+                            Client invoices, billing and payment records.
+                        </p>
+                        <span class="admin-module-link">Manage invoices →</span>
+                    </a>
+
+                    <a class="admin-module-card" id="reports" href="reports.html">
+                        <span class="module-icon">▥</span>
+                        <h3 data-en="Reports & Insights" data-mr="अहवाल आणि माहिती">Reports & Insights</h3>
+                        <p data-en="Review operational and attendance summaries."
+                           data-mr="कामकाज आणि उपस्थितीचे सारांश पाहा.">
+                            Review operational and attendance summaries.
+                        </p>
+                        <span class="admin-module-link">View reports →</span>
+                    </a>
+
+                </div>
+            </section>
+
+            <!-- SYSTEM WORKFLOW -->
+            <section class="admin-panel" id="workflow">
+                <div class="admin-section-heading">
+                    <div>
+                        <span class="eyebrow">WORKFLOW / कार्यप्रवाह</span>
+                        <h2 data-en="Daily operations" data-mr="दैनंदिन कामकाज">Daily operations</h2>
+                    </div>
+                </div>
+
+                <div class="admin-workflow">
+                    <div><span>01</span><strong>Guard & Site Setup</strong><small>रक्षक आणि साइट नोंदणी</small></div>
+                    <div><span>02</span><strong>Shift Roster</strong><small>शिफ्ट नियोजन</small></div>
+                    <div><span>03</span><strong>Attendance</strong><small>उपस्थिती नोंद</small></div>
+                    <div><span>04</span><strong>Incident Log</strong><small>घटना नोंद</small></div>
+                    <div><span>05</span><strong>Payroll</strong><small>पगार गणना</small></div>
+                    <div><span>06</span><strong>Client Invoice</strong><small>ग्राहकाचे बिल</small></div>
+                </div>
+            </section>
+
+            <!-- REPORTS -->
+            <section class="admin-panel" id="reports-preview">
+                <div class="admin-section-heading">
+                    <div>
+                        <span class="eyebrow">SYSTEM STATUS / प्रणाली स्थिती</span>
+                        <h2 data-en="Recent activity" data-mr="अलीकडील कामकाज">Recent activity</h2>
+                    </div>
+                    <a class="admin-module-link" href="reports.html">View reports →</a>
+                </div>
+
+                <div class="admin-empty-state">
+                    <span>▤</span>
+                    <h3 data-en="Activity records will appear here"
+                        data-mr="कामकाजाच्या नोंदी येथे दिसतील">
+                        Activity records will appear here
+                    </h3>
+                    <p data-en="Connect the reports API to display live database records."
+                       data-mr="डेटाबेसमधील नोंदी दाखवण्यासाठी Reports API जोडणे आवश्यक आहे.">
+                        Connect the reports API to display live database records.
+                    </p>
+                </div>
+            </section>
+
+            <footer class="admin-footer">
+                ShieldPoint Security · Security Agency Management System
+            </footer>
+        </div>
+    </main>
+</div>
+</body>
+</html>

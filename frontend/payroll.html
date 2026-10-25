@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Payroll | ShieldPoint</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
+<body>
+<header class="topbar"><a class="brand" href="index.html">⬡ ShieldPoint Security</a><a href="index.html#workflow">Home / मुख्यपृष्ठ</a></header>
+<main class="page-shell">
+<header class="page-header"><a href="index.html#workflow">← Back / परत</a><h1>5. Payroll / पगार गणना</h1><p>Calculate salary from attendance records / उपस्थितीनुसार पगाराची गणना करा.</p></header>
+<section class="form-panel">
+<h2>Payroll Form / पगार फॉर्म</h2>
+<form data-record-key="payroll">
+<div class="form-grid-3">
+<label>Payroll ID / पगार ID<input name="id" required></label>
+<label>Guard ID / रक्षक ID<input name="guardId" required></label>
+<label>Guard Name / नाव<input name="guardName" required></label>
+<label>Month / महिना<input name="month" type="month" required></label>
+<label>Days Worked / कामाचे दिवस<input id="daysWorked" name="days" type="number" min="0" max="31" required></label>
+<label>Daily Rate (₹) / दैनिक दर<input id="dailyRate" name="rate" type="number" min="0" step="0.01" required></label>
+<label>Allowance (₹) / भत्ता<input id="allowance" name="allowance" type="number" min="0" value="0"></label>
+<label>Deduction (₹) / कपात<input id="deduction" name="deduction" type="number" min="0" value="0"></label>
+<label>Payment Status / पेमेंट स्थिती<select name="status"><option>Draft / मसुदा</option><option>Pending / प्रलंबित</option><option>Approved / मंजूर</option><option>Paid / अदा</option></select></label>
+</div>
+<div class="metric" style="margin-top:16px"><span>Estimated Salary / अंदाजित पगार</span><strong id="payrollTotal">₹0.00</strong></div>
+<button class="btn btn-gold" type="submit">Save Payroll / पगार जतन करा</button><p class="message" aria-live="polite"></p>
+</form>
+</section>
+<section class="records-panel"><h2>Payroll Records / पगार नोंदी</h2><table data-record-table="payroll" data-columns="id,guardId,guardName,month,days,rate,status"><thead></thead><tbody></tbody></table></section>
+</main>
+</body></html>

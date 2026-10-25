@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shift Roster | ShieldPoint</title>
+<link rel="stylesheet" href="style.css"><script src="script.js" defer></script>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="index.html">⬡ ShieldPoint Security</a><a href="index.html#workflow">Home / मुख्यपृष्ठ</a></header>
+<main class="page-shell">
+<header class="page-header"><a href="index.html#workflow">← Back / परत</a><h1>2. Shift Roster / शिफ्ट नियोजन</h1><p>Assign guards to client sites and duty shifts / रक्षकांना साइट व शिफ्ट नेमा.</p></header>
+<section class="form-panel">
+<h2>Roster Form / ड्युटी नियोजन फॉर्म</h2>
+<form data-record-key="roster">
+<div class="form-grid-3">
+<label>Roster ID / नियोजन ID<input name="id" required placeholder="ROS001"></label>
+<label>Guard ID / रक्षक ID<input name="guardId" required placeholder="GRD001"></label>
+<label>Guard Name / रक्षकाचे नाव<input name="guardName" required></label>
+<label>Client / ग्राहक<input name="client" required></label>
+<label>Site / साइट<input name="site" required></label>
+<label>Duty Date / ड्युटी तारीख<input name="date" type="date" required></label>
+<label>Shift / शिफ्ट<select name="shift" required><option value="">Select / निवडा</option><option>Day / दिवस</option><option>Night / रात्र</option><option>Morning / सकाळ</option><option>Evening / संध्याकाळ</option></select></label>
+<label>Start Time / सुरुवात<input name="startTime" type="time" required></label>
+<label>End Time / समाप्ती<input name="endTime" type="time" required></label>
+<label>Supervisor / पर्यवेक्षक<input name="supervisor" required></label>
+<label>Status / स्थिती<select name="status"><option>Scheduled / नियोजित</option><option>Confirmed / निश्चित</option><option>Cancelled / रद्द</option></select></label>
+</div>
+<button class="btn btn-gold" type="submit">Save Roster / नियोजन जतन करा</button><p class="message" aria-live="polite"></p>
+</form>
+</section>
+<section class="records-panel"><h2>Roster Records / नियोजन नोंदी</h2><table data-record-table="roster" data-columns="id,guardId,guardName,site,date,shift,status"><thead></thead><tbody></tbody></table></section>
+</main>
+</body>
+</html>

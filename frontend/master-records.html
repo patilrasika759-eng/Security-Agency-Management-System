@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Records | Security Guard Agency</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f5f9;
+            color: #172033;
+        }
+        header {
+            background: #142b4a;
+            color: white;
+            padding: 18px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        header a { color: white; text-decoration: none; margin-right: 15px; }
+        main { max-width: 1100px; margin: 30px auto; padding: 0 16px; }
+        .panel {
+            background: white;
+            border-radius: 10px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 3px 12px #00000010;
+        }
+        .tabs { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+        button {
+            cursor: pointer;
+            border: 0;
+            border-radius: 6px;
+            padding: 11px 17px;
+            background: #1d5eaa;
+            color: white;
+        }
+        button:hover { opacity: .9; }
+        .tab { background: #dfe8f3; color: #142b4a; }
+        .tab.active { background: #1d5eaa; color: white; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        label { display: block; font-weight: bold; margin-bottom: 7px; }
+        input, select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccd4df;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+        .actions { display: flex; gap: 10px; margin-top: 18px; }
+        .cancel { background: #667085; }
+        .message { margin-top: 14px; font-weight: bold; }
+        .error { color: #c62828; }
+        .success { color: #16803c; }
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; min-width: 650px; }
+        th, td { padding: 12px; border-bottom: 1px solid #e2e7ee; text-align: left; }
+        th { background: #eef3f9; }
+        .delete { background: #b42318; padding: 7px 10px; }
+        footer { text-align: center; padding: 24px; color: #667085; }
+        [hidden] { display: none !important; }
+    </style>
+</head>
+<body>
+<header>
+    <strong>⬡ Security Guard Agency</strong>
+    <nav>
+        <a href="admin-dashboard.html">Dashboard</a>
+        <a href="index.html" id="logoutLink">Logout</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Manage Agency Records / मुख्य नोंदी</h1>
+    <p>Create and maintain guard, client and site information.</p>
+
+    <div class="tabs">
+        <button class="tab active" type="button" data-section="guards">Guards / रक्षक</button>
+        <button class="tab" type="button" data-section="clients">Clients / ग्राहक</button>
+        <button class="tab" type="button" data-section="sites">Sites / साइट्स</button>
+    </div>
+
+    <section class="panel">
+        <h2 id="formHeading">Guard Records / रक्षक नोंदी</h2>
+        <form id="recordForm">
+            <div class="grid">
+                <div>
+                    <label for="recordName">Name / नाव</label>
+                    <input id="recordName" name="name" required maxlength="100">
+                </div>
+                <div>
+                    <label for="recordPhone">Phone / फोन</label>
+                    <input id="recordPhone" name="phone" type="tel"
+                        required maxlength="10" minlength="10"
+                        pattern="[0-9]{10}" inputmode="numeric"
+                        title="Enter exactly 10 digits">
+                </div>
+                <div>
+                    <label for="recordEmail">Email / ईमेल</label>
+                    <input id="recordEmail" name="email" type="email">
+                </div>
+                <div id="statusField">
+                    <label for="recordStatus">Status / स्थिती</label>
+                    <select id="recordStatus" name="status">
+                        <option value="Active">Active / सक्रिय</option>
+                        <option value="Inactive">Inactive / निष्क्रिय</option>
+                        <option value="Pending">Pending / प्रलंबित</option>
+                    </select>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="submit" id="saveButton">Save Record / नोंद जतन करा</button>
+                <button type="reset" class="cancel">Cancel / रद्द करा</button>
+            </div>
+            <p id="formMessage" class="message" role="status"></p>
+        </form>
+    </section>
+
+    <section class="panel">
+        <h2 id="tableHeading">Guard Records / रक्षक नोंदी</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Name / नाव</th><th>Phone / फोन</th>
+                        <th>Email / ईमेल</th><th>Status / स्थिती</th><th>Actions / कृती</th>
+                    </tr>
+                </thead>
+                <tbody id="recordsBody">
+                    <tr><td colspan="6">Loading records...</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p id="listMessage" class="message"></p>
+    </section>
+</main>
+
+<footer>ShieldPoint Security · Master Records</footer>
+
+<script>
+const API_URL = "http://localhost:5000/api";
+let currentSection = "guards";
+
+const form = document.getElementById("recordForm");
+const formMessage = document.getElementById("formMessage");
+const listMessage = document.getElementById("listMessage");
+const recordsBody = document.getElementById("recordsBody");
+
+function showMessage(element, text, success = false) {
+    element.textContent = text;
+    element.className = "message " + (success ? "success" : "error");
+}
+
+function getEndpoint() {
+    return currentSection;
+}
+
+function getTokenHeaders() {
+    const token = localStorage.getItem("token");
+    return {
+        "Content-Type": "application/json",
+        ...(token ? { "Authorization": "Bearer " + token } : {})
+    };
+}
+
+async function loadRecords() {
+    recordsBody.replaceChildren();
+    const loadingRow = document.createElement("tr");
+    const loadingCell = document.createElement("td");
+    loadingCell.colSpan = 6;
+    loadingCell.textContent = "Loading records...";
+    loadingRow.appendChild(loadingCell);
+    recordsBody.appendChild(loadingRow);
+    listMessage.textContent = "";
+
+    try {
+        const response = await fetch(`${API_URL}/${getEndpoint()}`, {
+            headers: getTokenHeaders()
+        });
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || "Could not load records.");
+        }
+
+        const records = Array.isArray(result.data)
+            ? result.data
+            : Array.isArray(result)
+                ? result
+                : [];
+
+        recordsBody.replaceChildren();
+
+        if (records.length === 0) {
+            const row = document.createElement("tr");
+            const cell = document.createElement("td");
+            cell.colSpan = 6;
+            cell.textContent = "No records found / नोंदी सापडल्या नाहीत.";
+            row.appendChild(cell);
+            recordsBody.appendChild(row);
+            return;
+        }
+
+        records.forEach(record => {
+            const row = document.createElement("tr");
+            const values = [
+                record._id || record.id || "",
+                record.name || record.fullName || "",
+                record.phone || record.mobile || record.mobileNumber || "",
+                record.email || "",
+                record.status || "Active"
+            ];
+
+            values.forEach(value => {
+                const cell = document.createElement("td");
+                cell.textContent = String(value);
+                row.appendChild(cell);
+            });
+
+            const actionCell = document.createElement("td");
+            const deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.className = "delete";
+            deleteButton.textContent = "Delete";
+            deleteButton.addEventListener("click", () => deleteRecord(values[0]));
+            actionCell.appendChild(deleteButton);
+            row.appendChild(actionCell);
+            recordsBody.appendChild(row);
+        });
+    } catch (error) {
+        recordsBody.replaceChildren();
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.colSpan = 6;
+        cell.textContent = "Records load झाले नाहीत.";
+        row.appendChild(cell);
+        recordsBody.appendChild(row);
+        showMessage(listMessage, error.message);
+    }
+}
+
+form.addEventListener("submit", async event => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) return;
+
+    const phone = document.getElementById("recordPhone").value.trim();
+    if (!/^[0-9]{10}$/.test(phone)) {
+        showMessage(formMessage, "Mobile number exactly 10 digits असावा.");
+        return;
+    }
+
+    const payload = {
+        name: document.getElementById("recordName").value.trim(),
+        phone,
+        email: document.getElementById("recordEmail").value.trim(),
+        status: document.getElementById("recordStatus").value
+    };
+
+    const saveButton = document.getElementById("saveButton");
+    saveButton.disabled = true;
+    showMessage(formMessage, "Saving record...", true);
+
+    try {
+        const response = await fetch(`${API_URL}/${getEndpoint()}`, {
+            method: "POST",
+            headers: getTokenHeaders(),
+            body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || result.success === false) {
+            throw new Error(result.message || "Record save failed.");
+        }
+
+        showMessage(formMessage, "Record saved successfully!", true);
+        form.reset();
+        await loadRecords();
+    } catch (error) {
+        showMessage(formMessage, "Save failed: " + error.message);
+        console.error("Save record error:", error);
+    } finally {
+        saveButton.disabled = false;
+    }
+});
+
+async function deleteRecord(id) {
+    if (!id || !confirm("ही नोंद Delete करायची आहे का?")) return;
+
+    try {
+        const response = await fetch(
+            `${API_URL}/${getEndpoint()}/${encodeURIComponent(id)}`,
+            { method: "DELETE", headers: getTokenHeaders() }
+        );
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || "Delete failed.");
+        }
+
+        showMessage(listMessage, "Record deleted.", true);
+        await loadRecords();
+    } catch (error) {
+        showMessage(listMessage, error.message);
+    }
+}
+
+document.querySelectorAll("[data-section]").forEach(button => {
+    button.addEventListener("click", () => {
+        currentSection = button.dataset.section;
+        document.querySelectorAll("[data-section]").forEach(tab => {
+            tab.classList.toggle("active", tab === button);
+        });
+
+        const title = {
+            guards: "Guard Records / रक्षक नोंदी",
+            clients: "Client Records / ग्राहक नोंदी",
+            sites: "Site Records / साइट्स नोंदी"
+        }[currentSection];
+
+        document.getElementById("formHeading").textContent = title;
+        document.getElementById("tableHeading").textContent = title;
+
+        // Do not send an incompatible form to another endpoint.
+        if (currentSection !== "guards") {
+            showMessage(
+                formMessage,
+                "Clients आणि Sites साठी त्यांचे स्वतंत्र backend fields/routes तपासणे आवश्यक आहे."
+            );
+            form.hidden = true;
+        } else {
+            form.hidden = false;
+            formMessage.textContent = "";
+        }
+
+        loadRecords();
+    });
+});
+
+document.getElementById("logoutLink").addEventListener("click", event => {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("userEmail");
+    window.location.href = "index.html";
+});
+
+loadRecords();
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration | ShieldPoint</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="index.html">⬡ Security Guard Agency</a>
+    <div>
+        <button class="lang-btn" type="button" data-language="en">EN</button>
+        <button class="lang-btn" type="button" data-language="mr">मराठी</button>
+    </div>
+</header>
+
+<main class="page-shell">
+    <header class="page-header">
+        <a href="index.html">← Home / मुख्यपृष्ठ</a>
+        <h1 id="loginHeading">Sign in to ShieldPoint</h1>
+        <p>Login or create your Staff / Client account.</p>
+    </header>
+
+    <section class="form-panel" style="max-width:480px">
+
+        <div id="loginSection" class="hidden">
+            <h2>Login / लॉगिन</h2>
+
+            <div class="role-tabs">
+                <button type="button" class="active" data-role="Admin">Admin</button>
+                <button type="button" data-role="Staff">Staff</button>
+                <button type="button" data-role="Client">Client</button>
+            </div>
+
+            <form id="loginForm">
+                <input type="hidden" id="loginRole" name="role" value="Admin">
+
+                <label for="loginEmail">Email / ईमेल</label>
+                <input id="loginEmail" name="email" type="email"
+                       required autocomplete="username"
+                       placeholder="name@agency.com">
+
+                <label for="loginPassword">Password / पासवर्ड</label>
+                <input id="loginPassword" name="password" type="password"
+                       required autocomplete="current-password"
+                       placeholder="Enter password">
+
+                <a class="forgot-link" href="forgot-password.html">
+                    Forgot password? / पासवर्ड विसरलात?
+                </a>
+
+                <button class="btn btn-gold full" type="submit">
+                    Sign in / लॉगिन करा
+                </button>
+
+                <p class="message" id="loginMessage" aria-live="polite"></p>
+            </form>
+
+            <p style="margin-top:18px">
+                New Staff or Client?
+                <button class="btn btn-outline" id="showRegister"
+                        type="button" style="color:#111b2b">
+                    Create Account / Registration
+                </button>
+            </p>
+        </div>
+
+        <div id="registerSection">
+            <h2>Registration / नोंदणी</h2>
+            <p>Create a new Staff or Client account.</p>
+
+            <form id="registerForm">
+                <label for="registerName">Full Name / पूर्ण नाव</label>
+                <input id="registerName" name="name" type="text"
+                       required maxlength="100" autocomplete="name"
+                       placeholder="Enter your full name">
+
+                <label for="registerEmail">Email / ईमेल</label>
+                <input id="registerEmail" name="email" type="email"
+                       required maxlength="254" autocomplete="email"
+                       placeholder="Enter your email">
+
+                <label for="registerPassword">Password / पासवर्ड</label>
+                <input id="registerPassword" name="password" type="password"
+                       required minlength="8" autocomplete="new-password"
+                       placeholder="At least 8 characters">
+
+                <label for="registerRole">Register as / भूमिका निवडा</label>
+                <select id="registerRole" name="role" required>
+                    <option value="Staff">Staff</option>
+                    <option value="Client">Client</option>
+                </select>
+
+                <button class="btn btn-gold full" type="submit">
+                    Register / नोंदणी करा
+                </button>
+
+                <p class="message" id="registerMessage" aria-live="polite"></p>
+            </form>
+
+            <button class="btn btn-outline full" id="showLogin"
+                    type="button" style="color:#111b2b;margin-top:14px">
+                Back to Login / लॉगिनकडे परत जा
+            </button>
+        </div>
+
+    </section>
+</main>
+</body>
+</html>

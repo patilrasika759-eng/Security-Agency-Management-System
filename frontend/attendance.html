@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Attendance | ShieldPoint</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
+<body>
+<header class="topbar"><a class="brand" href="index.html">⬡ ShieldPoint Security</a><a href="index.html#workflow">Home / मुख्यपृष्ठ</a></header>
+<main class="page-shell">
+<header class="page-header"><a href="index.html#workflow">← Back / परत</a><h1>3. Attendance / उपस्थिती</h1><p>Record guard check-in, check-out, late and absent status / रक्षकांची उपस्थिती नोंदवा.</p></header>
+<section class="form-panel">
+<h2>Attendance Form / उपस्थिती फॉर्म</h2>
+<form data-record-key="attendance">
+<div class="form-grid-3">
+<label>Attendance ID / उपस्थिती ID<input name="id" required></label>
+<label>Guard ID / रक्षक ID<input name="guardId" required></label>
+<label>Guard Name / रक्षकाचे नाव<input name="guardName" required></label>
+<label>Site / साइट<input name="site" required></label>
+<label>Duty Date / तारीख<input name="date" type="date" required></label>
+<label>Shift / शिफ्ट<select name="shift"><option>Day / दिवस</option><option>Night / रात्र</option></select></label>
+<label>Check-in / हजेरी वेळ<input name="checkIn" type="time"></label>
+<label>Check-out / परतीची वेळ<input name="checkOut" type="time"></label>
+<label>Status / स्थिती<select name="status" required><option>Present / उपस्थित</option><option>Late / उशिरा</option><option>Absent / अनुपस्थित</option><option>Leave / रजा</option></select></label>
+<label>GPS Latitude / अक्षांश<input name="latitude" type="number" step="any" placeholder="Optional"></label>
+<label>GPS Longitude / रेखांश<input name="longitude" type="number" step="any" placeholder="Optional"></label>
+<label>Remarks / शेरा<input name="remarks"></label>
+</div>
+<button class="btn btn-gold" type="submit">Save Attendance / उपस्थिती जतन करा</button><p class="message" aria-live="polite"></p>
+</form>
+</section>
+<section class="records-panel"><h2>Attendance Records / उपस्थिती नोंदी</h2><table data-record-table="attendance" data-columns="id,guardId,guardName,site,date,shift,status"><thead></thead><tbody></tbody></table></section>
+</main>
+</body></html>

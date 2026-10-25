@@ -1,0 +1,119 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings and Audit | ShieldPoint Security</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="management-page">
+<header class="topbar">
+  <a class="brand" href="index.html">⬡ Security Guard Agency</a>
+  <nav class="management-nav">
+    <a href="index.html">Home / मुख्यपृष्ठ</a>
+    <a href="guards.html">Master Records / मुख्य नोंदी</a>
+    <a href="reports.html">Dashboard / डॅशबोर्ड</a>
+    <a href="notifications.html">Notifications / सूचना</a>
+    <button class="lang-btn" data-language="en">EN</button>
+    <button class="lang-btn" data-language="mr">मराठी</button>
+  </nav>
+</header>
+
+<main class="management-main">
+  <span class="eyebrow">SETTINGS AND AUDIT / सेटिंग्ज व नोंद इतिहास</span>
+  <h1 data-en="Control your agency settings"
+      data-mr="एजन्सीच्या सेटिंग्ज नियंत्रित करा">Control your agency settings</h1>
+  <p data-en="Maintain agency details, preferences and a record of changes."
+     data-mr="एजन्सीची माहिती, पसंती आणि बदलांचा इतिहास व्यवस्थापित करा.">
+     Maintain agency details, preferences and a record of changes.
+  </p>
+
+  <section class="management-panel">
+    <h2>Agency profile / एजन्सीची माहिती</h2>
+    <form id="agencySettingsForm" class="management-form">
+      <label>Agency name / एजन्सीचे नाव
+        <input name="agencyName" required maxlength="120" placeholder="ShieldPoint Security">
+      </label>
+      <label>Email / ईमेल
+        <input name="agencyEmail" type="email" required placeholder="name@agency.com">
+      </label>
+      <label>Phone / फोन
+        <input name="agencyPhone" required maxlength="20" placeholder="Agency phone number">
+      </label>
+      <label>Address / पत्ता
+        <input name="agencyAddress" maxlength="250" placeholder="Agency address">
+      </label>
+      <label>Default language / मुख्य भाषा
+        <select name="language">
+          <option value="en">English</option>
+          <option value="mr">मराठी</option>
+        </select>
+      </label>
+      <label>Display preference / डिस्प्ले
+        <select name="displayMode">
+          <option value="dark">Dark / गडद</option>
+          <option value="light">Light / फिकट</option>
+        </select>
+      </label>
+      <label class="check-setting">
+        <input type="checkbox" name="emailNotifications">
+        Enable email notification preference / ईमेल सूचना पसंती सुरू करा
+      </label>
+      <label class="check-setting">
+        <input type="checkbox" name="attendanceAlerts">
+        Enable attendance alerts / उपस्थिती सूचना सुरू करा
+      </label>
+      <button class="btn btn-gold" type="submit">Save settings / सेटिंग्ज जतन करा</button>
+      <p id="settingsMessage" class="form-note" role="status"></p>
+    </form>
+  </section>
+
+  <section class="management-panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Audit history / बदलांचा इतिहास</h2>
+        <p>Review actions recorded in this browser demo / या browser demo मधील कृतींचा इतिहास.</p>
+      </div>
+      <input type="search" id="auditSearch" placeholder="Search audit history / इतिहास शोधा">
+    </div>
+    <div class="audit-toolbar">
+      <button class="btn btn-outline" id="exportAudit" type="button">
+        Export audit CSV / इतिहास डाउनलोड
+      </button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date and time / तारीख व वेळ</th>
+            <th>Action / कृती</th>
+            <th>Details / तपशील</th>
+            <th>User / वापरकर्ता</th>
+          </tr>
+        </thead>
+        <tbody id="auditTableBody"></tbody>
+      </table>
+    </div>
+    <p id="auditEmpty" class="empty-state">No audit entries yet / नोंदी उपलब्ध नाहीत.</p>
+  </section>
+
+  <section class="management-panel">
+    <h2>Data management / डेटा व्यवस्थापन</h2>
+    <p>Export or clear locally saved demo records. Export your records before clearing them.</p>
+    <p>जतन केलेला demo डेटा डाउनलोड करा किंवा हटवा. डेटा हटवण्यापूर्वी त्याचा बॅकअप घ्या.</p>
+    <div class="form-actions">
+      <button type="button" class="btn btn-outline" id="exportAllData">Export all demo data / सर्व डेटा डाउनलोड</button>
+      <button type="button" class="btn btn-danger" id="clearDemoData">Clear demo data / डेटा हटवा</button>
+    </div>
+    <p id="dataManagementMessage" class="form-note" role="status"></p>
+  </section>
+</main>
+<footer class="footer">
+  <span>ShieldPoint Security · Settings and Audit</span>
+  <a href="index.html">Back to Home / मुख्यपृष्ठावर जा</a>
+</footer>
+</body>
+</html>
+```

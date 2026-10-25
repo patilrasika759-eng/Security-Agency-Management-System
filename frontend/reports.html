@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports and Dashboard | ShieldPoint Security</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+    <a href="dashboard.html" class="logo">⬡ Security Guard Agency</a>
+
+    <nav>
+        <a href="dashboard.html">Home / मुख्यपृष्ठ</a>
+        <a href="master-records.html">Master Records / मुख्य नोंदी</a>
+        <a href="notifications.html">Notifications / सूचना</a>
+        <a href="settings.html">Settings / सेटिंग्ज</a>
+        <button type="button" id="languageEnglish">EN</button>
+        <button type="button" id="languageMarathi">मराठी</button>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="page-heading">
+        <h1>REPORTS AND DASHBOARD / अहवाल व डॅशबोर्ड</h1>
+        <h2>See the whole operation at a glance</h2>
+        <p>Review agency records, attendance and operational status.</p>
+    </section>
+
+    <section class="card">
+        <div class="form-grid">
+            <div>
+                <label for="fromDate">From / पासून</label>
+                <input type="date" id="fromDate">
+            </div>
+
+            <div>
+                <label for="toDate">To / पर्यंत</label>
+                <input type="date" id="toDate">
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button type="button" id="refreshReports">
+                Refresh / अद्ययावत करा
+            </button>
+
+            <button type="button" id="exportCSV">
+                Export CSV / CSV डाउनलोड
+            </button>
+        </div>
+
+        <p id="reportMessage" class="message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="dashboard-grid">
+
+        <article class="card">
+            <h3>Guards / रक्षक</h3>
+            <strong id="reportGuards">0</strong>
+        </article>
+
+        <article class="card">
+            <h3>Active sites / सक्रिय साइट्स</h3>
+            <strong id="reportSites">0</strong>
+        </article>
+
+        <article class="card">
+            <h3>Open incidents / प्रलंबित घटना</h3>
+            <strong id="reportIncidents">0</strong>
+        </article>
+
+        <article class="card">
+            <h3>Pending invoices / प्रलंबित बिले</h3>
+            <strong id="reportInvoices">0</strong>
+        </article>
+
+    </section>
+
+    <section class="card">
+        <h2>Attendance report / उपस्थिती अहवाल</h2>
+
+        <p>
+            Review saved attendance entries /
+            जतन केलेल्या उपस्थितीच्या नोंदी तपासा.
+        </p>
+
+        <div class="table-wrapper">
+            <table id="attendanceReportTable">
+                <thead>
+                    <tr>
+                        <th>Date / तारीख</th>
+                        <th>Guard / रक्षक</th>
+                        <th>Site / साइट</th>
+                        <th>Check-in / हजेरी</th>
+                        <th>Check-out / सुट्टी</th>
+                        <th>Status / स्थिती</th>
+                    </tr>
+                </thead>
+
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <p id="attendanceEmpty">
+            No attendance records yet /
+            उपस्थिती नोंदी उपलब्ध नाहीत.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>Attendance this week / या आठवड्याची उपस्थिती</h2>
+
+        <p>
+            Counts from saved attendance records /
+            जतन केलेल्या उपस्थिती नोंदींची संख्या.
+        </p>
+
+        <strong id="weeklyAttendance">0</strong>
+    </section>
+
+    <section class="card">
+        <h2>Operational summary / कामकाजाचा सारांश</h2>
+
+        <div class="summary-item">
+            <h3>Payroll / पगार</h3>
+            <p>
+                Pending payroll entries:
+                <strong id="pendingPayroll">0</strong>
+            </p>
+        </div>
+
+        <div class="summary-item">
+            <h3>Audit history / नोंद इतिहास</h3>
+            <p>
+                Total recorded actions:
+                <strong id="auditCount">0</strong>
+            </p>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>ShieldPoint Security · Reports</p>
+    <a href="dashboard.html">Back to Home / मुख्यपृष्ठावर जा</a>
+</footer>
+
+</body>
+</html>

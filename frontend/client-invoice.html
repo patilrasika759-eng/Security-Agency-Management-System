@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Client Invoice | ShieldPoint</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
+<body>
+<header class="topbar"><a class="brand" href="index.html">⬡ ShieldPoint Security</a><a href="index.html#workflow">Home / मुख्यपृष्ठ</a></header>
+<main class="page-shell">
+<header class="page-header"><a href="index.html#workflow">← Back / परत</a><h1>6. Client Invoice / ग्राहकाचे बिल</h1><p>Prepare a bill for guard shifts actually served / प्रत्यक्ष केलेल्या ड्युटीनुसार बिल तयार करा.</p></header>
+<section class="form-panel">
+<h2>Invoice Form / बिल फॉर्म</h2>
+<form data-record-key="invoices">
+<div class="form-grid-3">
+<label>Invoice ID / बिल ID<input name="id" required></label>
+<label>Client Name / ग्राहकाचे नाव<input name="client" required></label>
+<label>Client ID / ग्राहक ID<input name="clientId" required></label>
+<label>Site / साइट<input name="site" required></label>
+<label>Invoice Date / बिल तारीख<input name="date" type="date" required></label>
+<label>Due Date / अंतिम तारीख<input name="dueDate" type="date" required></label>
+<label>Number of Shifts / शिफ्ट संख्या<input id="invoiceShifts" name="shifts" type="number" min="0" required></label>
+<label>Rate per Shift (₹) / प्रति शिफ्ट दर<input id="invoiceRate" name="rate" type="number" min="0" step="0.01" required></label>
+<label>Tax (%) / कर<input id="invoiceTax" name="tax" type="number" min="0" max="100" value="0"></label>
+<label>Status / स्थिती<select name="status"><option>Draft / मसुदा</option><option>Pending / प्रलंबित</option><option>Paid / अदा</option><option>Overdue / मुदत संपली</option></select></label>
+</div>
+<div class="metric" style="margin-top:16px"><span>Estimated Total / अंदाजित एकूण</span><strong id="invoiceTotal">₹0.00</strong></div>
+<button class="btn btn-gold" type="submit">Save Invoice / बिल जतन करा</button><p class="message" aria-live="polite"></p>
+</form>
+</section>
+<section class="records-panel"><h2>Invoice Records / बिल नोंदी</h2><table data-record-table="invoices" data-columns="id,client,clientId,site,date,dueDate,shifts,status"><thead></thead><tbody></tbody></table></section>
+</main>
+</body></html>

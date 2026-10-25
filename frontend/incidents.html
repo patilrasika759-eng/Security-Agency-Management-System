@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Incident Report | ShieldPoint</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
+<body>
+<header class="topbar"><a class="brand" href="index.html">⬡ ShieldPoint Security</a><a href="index.html#workflow">Home / मुख्यपृष्ठ</a></header>
+<main class="page-shell">
+<header class="page-header"><a href="index.html#workflow">← Back / परत</a><h1>4. Incidents / घटना नोंद</h1><p>Record incident details, action taken and status / घटनेची माहिती व केलेली कार्यवाही नोंदवा.</p></header>
+<section class="form-panel">
+<h2>Incident Report Form / घटना अहवाल</h2>
+<form data-record-key="incidents">
+<div class="form-grid-3">
+<label>Incident ID / घटना ID<input name="id" required></label>
+<label>Incident Date / तारीख<input name="date" type="date" required></label>
+<label>Incident Time / वेळ<input name="time" type="time" required></label>
+<label>Site / साइट<input name="site" required></label>
+<label>Reported By / नोंद करणारा<input name="reportedBy" required></label>
+<label>Guard ID / रक्षक ID<input name="guardId"></label>
+<label>Incident Type / प्रकार<select name="type" required><option>Security / सुरक्षा</option><option>Medical / वैद्यकीय</option><option>Property / मालमत्ता</option><option>Visitor / अभ्यागत</option><option>Other / इतर</option></select></label>
+<label>Priority / प्राधान्य<select name="priority"><option>Low / कमी</option><option>Medium / मध्यम</option><option>High / जास्त</option><option>Urgent / तातडीचे</option></select></label>
+<label>Status / स्थिती<select name="status"><option>Open / सुरू</option><option>Under Review / तपासणी सुरू</option><option>Resolved / सोडवले</option></select></label>
+<label class="span-2">Incident Details / घटनेचे तपशील<textarea name="details" rows="3" required></textarea></label>
+<label>Action Taken / केलेली कार्यवाही<textarea name="action" rows="3"></textarea></label>
+</div>
+<button class="btn btn-gold" type="submit">Save Incident / घटना जतन करा</button><p class="message" aria-live="polite"></p>
+</form>
+</section>
+<section class="records-panel"><h2>Incident History / घटना इतिहास</h2><table data-record-table="incidents" data-columns="id,date,time,site,type,priority,status"><thead></thead><tbody></tbody></table></section>
+</main>
+</body></html>

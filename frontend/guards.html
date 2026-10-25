@@ -1,0 +1,105 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Records | ShieldPoint Security</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="management-page">
+<header class="topbar">
+  <a class="brand" href="index.html">⬡ Security Guard Agency</a>
+  <nav class="management-nav">
+    <a href="index.html">Home / मुख्यपृष्ठ</a>
+    <a href="reports.html">Dashboard / डॅशबोर्ड</a>
+    <a href="notifications.html">Notifications / सूचना</a>
+    <a href="settings-audit.html">Settings / सेटिंग्ज</a>
+    <button class="lang-btn" data-language="en">EN</button>
+    <button class="lang-btn" data-language="mr">मराठी</button>
+  </nav>
+</header>
+
+<main class="management-main">
+  <span class="eyebrow">MASTER RECORDS / मुख्य नोंदी</span>
+  <h1 data-en="Manage agency records" data-mr="एजन्सीच्या नोंदी व्यवस्थापित करा">Manage agency records</h1>
+  <p data-en="Create and maintain guard, client and site information."
+     data-mr="सुरक्षा रक्षक, ग्राहक आणि साइटची माहिती नोंदवा व व्यवस्थापित करा.">
+     Create and maintain guard, client and site information.
+  </p>
+
+  <div class="record-tabs">
+    <button type="button" class="record-tab active" data-record-tab="guards">Guards / रक्षक</button>
+    <button type="button" class="record-tab" data-record-tab="clients">Clients / ग्राहक</button>
+    <button type="button" class="record-tab" data-record-tab="sites">Sites / साइट्स</button>
+  </div>
+
+  <section class="management-panel">
+    <div class="panel-heading">
+      <div>
+        <h2 id="recordHeading">Guard Records / रक्षक नोंदी</h2>
+        <p id="recordDescription">Add, search and maintain guard information.</p>
+      </div>
+      <input id="recordSearch" type="search"
+             placeholder="Search records / नोंदी शोधा">
+    </div>
+
+    <form id="masterRecordForm" class="management-form">
+      <input type="hidden" id="recordId">
+      <input type="hidden" id="recordType" value="guards">
+      <label>Name / नाव
+        <input id="recordName" required maxlength="100"
+               placeholder="Enter full name / पूर्ण नाव">
+      </label>
+      <label id="recordExtraLabel">Phone / फोन
+        <input id="recordExtra" required maxlength="150"
+               placeholder="Phone number">
+      </label>
+      <label>Email / ईमेल
+        <input id="recordEmail" type="email"
+               placeholder="name@example.com">
+      </label>
+      <label>Status / स्थिती
+        <select id="recordStatus">
+          <option value="Active">Active / सक्रिय</option>
+          <option value="Inactive">Inactive / निष्क्रिय</option>
+          <option value="Pending">Pending / प्रलंबित</option>
+        </select>
+      </label>
+      <div class="form-actions">
+        <button class="btn btn-gold" type="submit" id="recordSubmit">
+          Save Record / नोंद जतन करा
+        </button>
+        <button class="btn btn-outline" type="button" id="recordCancel">
+          Cancel / रद्द करा
+        </button>
+      </div>
+      <p id="recordMessage" class="form-note" role="status"></p>
+    </form>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name / नाव</th>
+            <th id="extraColumnHeading">Phone / फोन</th>
+            <th>Email / ईमेल</th>
+            <th>Status / स्थिती</th>
+            <th>Actions / कृती</th>
+          </tr>
+        </thead>
+        <tbody id="masterRecordsBody"></tbody>
+      </table>
+    </div>
+    <p id="recordsEmpty" class="empty-state">No records found / नोंदी सापडल्या नाहीत.</p>
+  </section>
+</main>
+<footer class="footer">
+  <span>ShieldPoint Security · Master Records</span>
+  <a href="index.html">Back to Home / मुख्यपृष्ठावर जा</a>
+</footer>
+</body>
+</html>
+```

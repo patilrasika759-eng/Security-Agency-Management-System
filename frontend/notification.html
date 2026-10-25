@@ -1,0 +1,113 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications and Status | ShieldPoint Security</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="management-page">
+<header class="topbar">
+  <a class="brand" href="index.html">⬡ Security Guard Agency</a>
+  <nav class="management-nav">
+    <a href="index.html">Home / मुख्यपृष्ठ</a>
+    <a href="guards.html">Master Records / मुख्य नोंदी</a>
+    <a href="reports.html">Dashboard / डॅशबोर्ड</a>
+    <a href="settings-audit.html">Settings / सेटिंग्ज</a>
+    <button class="lang-btn" data-language="en">EN</button>
+    <button class="lang-btn" data-language="mr">मराठी</button>
+  </nav>
+</header>
+
+<main class="management-main">
+  <span class="eyebrow">NOTIFICATIONS AND STATUS / सूचना व स्थिती</span>
+  <h1 data-en="Stay updated on every operation"
+      data-mr="प्रत्येक कामकाजाची अद्ययावत माहिती मिळवा">Stay updated on every operation</h1>
+  <p data-en="Create notifications and track workflow status."
+     data-mr="सूचना तयार करा आणि कामकाजाची स्थिती तपासा.">
+     Create notifications and track workflow status.
+  </p>
+
+  <section class="management-panel">
+    <h2>Create notification / सूचना तयार करा</h2>
+    <form id="notificationForm" class="management-form">
+      <label>Title / शीर्षक
+        <input name="title" required maxlength="120" placeholder="Notification title">
+      </label>
+      <label>Category / प्रकार
+        <select name="category">
+          <option value="Attendance">Attendance / उपस्थिती</option>
+          <option value="Incident">Incident / घटना</option>
+          <option value="Payroll">Payroll / पगार</option>
+          <option value="Invoice">Invoice / बिल</option>
+          <option value="General">General / सामान्य</option>
+        </select>
+      </label>
+      <label>Priority / प्राधान्य
+        <select name="priority">
+          <option value="Normal">Normal / सामान्य</option>
+          <option value="High">High / उच्च</option>
+          <option value="Urgent">Urgent / तातडीचे</option>
+        </select>
+      </label>
+      <label>Message / संदेश
+        <textarea name="message" required rows="3" maxlength="1000"
+                  placeholder="Enter notification details"></textarea>
+      </label>
+      <button type="submit" class="btn btn-gold">Create / तयार करा</button>
+      <p id="notificationMessage" class="form-note" role="status"></p>
+    </form>
+  </section>
+
+  <section class="management-panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Notification centre / सूचना केंद्र</h2>
+        <p>Review and manage saved notifications / जतन केलेल्या सूचना व्यवस्थापित करा.</p>
+      </div>
+      <input type="search" id="notificationSearch" placeholder="Search / शोधा">
+    </div>
+    <div class="notification-toolbar">
+      <label>Filter / फिल्टर
+        <select id="notificationFilter">
+          <option value="All">All / सर्व</option>
+          <option value="Unread">Unread / न वाचलेल्या</option>
+          <option value="Read">Read / वाचलेल्या</option>
+        </select>
+      </label>
+      <button class="btn btn-outline" type="button" id="markAllRead">
+        Mark all read / सर्व वाचलेल्या करा
+      </button>
+    </div>
+    <div id="notificationList" class="notification-list"></div>
+    <p id="notificationEmpty" class="empty-state">No notifications / सूचना उपलब्ध नाहीत.</p>
+  </section>
+
+  <section class="management-panel">
+    <h2>Workflow status / कार्यप्रवाह स्थिती</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Workflow / कार्य</th><th>Status / स्थिती</th><th>Update / बदल</th></tr>
+        </thead>
+        <tbody id="workflowStatusBody">
+          <tr><td>Guard registration / रक्षक नोंदणी</td><td><span class="status scheduled">In Progress</span></td><td><select data-workflow="Guard registration"><option>In Progress</option><option>Completed</option><option>Pending</option></select></td></tr>
+          <tr><td>Shift roster / शिफ्ट नियोजन</td><td><span class="status scheduled">Pending</span></td><td><select data-workflow="Shift roster"><option>Pending</option><option>In Progress</option><option>Completed</option></select></td></tr>
+          <tr><td>Attendance / उपस्थिती</td><td><span class="status present">Completed</span></td><td><select data-workflow="Attendance"><option>Completed</option><option>In Progress</option><option>Pending</option></select></td></tr>
+          <tr><td>Incidents / घटना</td><td><span class="status late">Pending</span></td><td><select data-workflow="Incidents"><option>Pending</option><option>In Progress</option><option>Completed</option></select></td></tr>
+          <tr><td>Payroll / पगार</td><td><span class="status scheduled">Pending</span></td><td><select data-workflow="Payroll"><option>Pending</option><option>In Progress</option><option>Completed</option></select></td></tr>
+          <tr><td>Client invoice / ग्राहक बिल</td><td><span class="status scheduled">Pending</span></td><td><select data-workflow="Client invoice"><option>Pending</option><option>In Progress</option><option>Completed</option></select></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <span>ShieldPoint Security · Notifications</span>
+  <a href="index.html">Back to Home / मुख्यपृष्ठावर जा</a>
+</footer>
+</body>
+</html>
+```

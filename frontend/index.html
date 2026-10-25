@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShieldPoint Security | Management System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html">⬡ Security Guard Agency</a>
+  <button class="mobile-menu" id="mobileMenu" type="button">☰</button>
+
+  <nav id="navLinks">
+    <a href="#services" data-en="Services" data-mr="सेवा">Services</a>
+    <a href="#workflow" data-en="Workflow" data-mr="कार्यप्रवाह">Workflow</a>
+    <a href="#modules" data-en="Modules" data-mr="मॉड्यूल्स">Modules</a>
+    <a href="#dashboard" data-en="Dashboard" data-mr="डॅशबोर्ड">Dashboard</a>
+    <a href="#pricing" data-en="Pricing" data-mr="किंमत">Pricing</a>
+    <button class="lang-btn active" type="button" data-language="en">EN</button>
+    <button class="lang-btn" type="button" data-language="mr">मराठी</button>
+    <a class="btn btn-gold small-btn" href="login.html"
+       data-en="Login" data-mr="लॉगिन">Login</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- HERO SECTION: LOGIN CARD REMOVED -->
+<section class="hero section-dark" id="home">
+  <div class="hero-copy" style="grid-column:1 / -1; max-width:850px;">
+    <span class="eyebrow pill"
+      data-en="● Private security agency management system"
+      data-mr="● खासगी सुरक्षा एजन्सी व्यवस्थापन प्रणाली">
+      ● Private security agency management system
+    </span>
+
+    <h1>
+      <span data-en="Every guard, shift and invoice."
+            data-mr="प्रत्येक सुरक्षा रक्षक, शिफ्ट आणि बिल.">
+        Every guard, shift and invoice.
+      </span>
+      <br>
+      <span class="gold-text"
+        data-en="One controlled system."
+        data-mr="एकाच नियंत्रित प्रणालीमध्ये.">
+        One controlled system.
+      </span>
+    </h1>
+
+    <p
+      data-en="Replace scattered registers and spreadsheets. Roster guards, track attendance, log incidents, run payroll and bill clients from the same searchable records."
+      data-mr="विखुरलेल्या नोंदवह्या आणि स्प्रेडशीटऐवजी एकच प्रणाली वापरा. रक्षकांची ड्युटी, उपस्थिती, घटना, पगार आणि ग्राहकांची बिले एकाच ठिकाणी व्यवस्थापित करा.">
+      Replace scattered registers and spreadsheets. Roster guards, track
+      attendance, log incidents, run payroll and bill clients from the same
+      searchable records.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-outline" href="#workflow"
+         data-en="See how it works"
+         data-mr="कार्यपद्धती पाहा">
+        See how it works
+      </a>
+    </div>
+
+    <div class="trust-row">
+      <span>✓ <span data-en="Role-based access" data-mr="भूमिकेनुसार प्रवेश">Role-based access</span></span>
+      <span>✓ <span data-en="Full audit history" data-mr="संपूर्ण नोंद इतिहास">Full audit history</span></span>
+      <span>✓ <span data-en="Geofence attendance" data-mr="भौगोलिक उपस्थिती">Geofence attendance</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-strip">
+  <div><strong>6</strong><span data-en="Connected workflow steps" data-mr="जोडलेले कार्यप्रवाह टप्पे">Connected workflow steps</span></div>
+  <div><strong>8</strong><span data-en="Functional modules" data-mr="कार्यरत मॉड्यूल्स">Functional modules</span></div>
+  <div><strong>3</strong><span data-en="User roles" data-mr="वापरकर्ता भूमिका">User roles</span></div>
+  <div><strong>1</strong><span data-en="Searchable records system" data-mr="शोधता येणारी नोंद प्रणाली">Searchable records system</span></div>
+</section>
+
+<!-- SERVICES -->
+<section class="section-dark section-pad" id="services">
+  <div class="section-heading">
+    <span class="eyebrow">OUR SERVICES / आमच्या सेवा</span>
+    <h2 data-en="Guards for every kind of site" data-mr="प्रत्येक प्रकारच्या ठिकाणासाठी सुरक्षा रक्षक">Guards for every kind of site</h2>
+    <p data-en="The same system rosters, tracks and bills the guards you deploy."
+       data-mr="एकाच प्रणालीत सुरक्षा रक्षकांची ड्युटी, उपस्थिती आणि बिलिंग व्यवस्थापित करा.">
+      The same system rosters, tracks and bills the guards you deploy.
+    </p>
+  </div>
+
+  <div class="grid grid-3">
+    <article class="feature-card"><span class="icon">▤</span><h3>Corporate and office</h3><p>Reception, access control and after-hours cover for offices.</p></article>
+    <article class="feature-card"><span class="icon">⌂</span><h3>Residential societies</h3><p>Gate duty, visitor logs and night rounds for housing societies.</p></article>
+    <article class="feature-card"><span class="icon">♜</span><h3>Banks and retail</h3><p>Trained guards for branches, ATMs and shops.</p></article>
+    <article class="feature-card"><span class="icon">▧</span><h3>Industrial and warehouse</h3><p>Perimeter watch and gate control for plants and godowns.</p></article>
+    <article class="feature-card"><span class="icon">♙</span><h3>Event security</h3><p>Short-term crowd and entry management for functions.</p></article>
+    <article class="feature-card"><span class="icon">☾</span><h3>Night patrol</h3><p>Mobile patrol rounds with every visit logged in the system.</p></article>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section class="section-light section-pad" id="workflow">
+  <div class="section-heading">
+    <span class="eyebrow">CORE WORKFLOW / मुख्य कार्यप्रवाह</span>
+    <h2 data-en="From site setup to client invoice" data-mr="साइट नोंदणीपासून ग्राहकाच्या बिलापर्यंत">From site setup to client invoice</h2>
+    <p data-en="Six connected steps. Each one feeds the next, so reports always match the records."
+       data-mr="सहा जोडलेले टप्पे. प्रत्येक टप्प्यातील माहिती पुढील टप्प्यात वापरली जाते.">
+      Six connected steps. Each one feeds the next, so reports always match the records.
+    </p>
+  </div>
+
+  <div class="grid grid-3">
+    <a class="workflow-card" href="guard-site-setup.html"><span class="step">1</span><h3>Guard and site setup</h3><p>Register guards, clients and sites with unique IDs, status and dates.</p><span class="mr-copy">रक्षक, ग्राहक आणि साइटची नोंदणी</span></a>
+    <a class="workflow-card" href="shift-roster.html"><span class="step">2</span><h3>Shift roster</h3><p>Assign guards to sites by day and shift. Overlaps are blocked in a full system.</p><span class="mr-copy">शिफ्ट आणि ड्युटी नियोजन</span></a>
+    <a class="workflow-card" href="attendance.html"><span class="step">3</span><h3>Attendance</h3><p>Check-in and check-out per shift, with late and absent status.</p><span class="mr-copy">उपस्थिती नोंद</span></a>
+    <a class="workflow-card" href="incidents.html"><span class="step">4</span><h3>Incidents</h3><p>Log what happened, where and when, with status and history.</p><span class="mr-copy">घटना नोंदवही</span></a>
+    <a class="workflow-card" href="payroll.html"><span class="step">5</span><h3>Payroll</h3><p>Salary is calculated from attendance. Finalized payroll is locked.</p><span class="mr-copy">पगार गणना</span></a>
+    <a class="workflow-card" href="client-invoice.html"><span class="step">6</span><h3>Client invoice</h3><p>Bill each client for the guard shifts actually served.</p><span class="mr-copy">ग्राहकाचे बिल</span></a>
+  </div>
+</section>
+
+<!-- FUNCTIONAL MODULES: DUPLICATE SECTION REMOVED -->
+<section class="section-dark section-pad" id="modules">
+  <div class="section-heading">
+    <span class="eyebrow" data-en="FUNCTIONAL MODULES / SYSTEM FEATURES" data-mr="कार्यरत मॉड्यूल्स / प्रणालीची वैशिष्ट्ये">FUNCTIONAL MODULES / SYSTEM FEATURES</span>
+    <h2 data-en="Everything the agency needs, every day" data-mr="एजन्सीला दररोज आवश्यक असणाऱ्या सर्व सुविधा">Everything the agency needs, every day</h2>
+    <p data-en="Eight modules that cover the full business, from login to audit trail." data-mr="लॉगिनपासून audit history पर्यंत संपूर्ण व्यवसायासाठी आठ मॉड्यूल्स.">Eight modules that cover the full business, from login to audit trail.</p>
+  </div>
+
+  <div class="grid grid-4">
+    <a class="feature-card module-card" href="login.html"><span class="icon">♙</span><h3>Authentication and roles</h3><p>Login for Admin, Staff and Client.</p><span class="text-link">Open module →</span></a>
+    <a class="feature-card module-card" href="master-records.html"><span class="icon">♟</span><h3>Master records</h3><p>Add, search, edit and delete guard, client and site records.</p><span class="text-link">Manage records →</span></a>
+    <a class="feature-card module-card" href="shift-roster.html"><span class="icon">▣</span><h3>Roster and attendance</h3><p>Create shifts and maintain check-in and check-out records.</p><span class="text-link">Open module →</span></a>
+    <a class="feature-card module-card" href="reports.html"><span class="icon">⌕</span><h3>Search and history</h3><p>Search records and inspect available activity history.</p><span class="text-link">Search records →</span></a>
+    <a class="feature-card module-card" href="payroll.html"><span class="icon">▤</span><h3>Payroll and invoices</h3><p>Maintain salary and client invoice records.</p><span class="text-link">Open module →</span></a>
+    <a class="feature-card module-card" href="reports.html"><span class="icon">▥</span><h3>Reports and dashboard</h3><p>View totals, attendance summaries and operational reports.</p><span class="text-link">View reports →</span></a>
+    <a class="feature-card module-card" href="notification.html"><span class="icon">♧</span><h3>Notifications and status</h3><p>View notifications and track record status.</p><span class="text-link">Open notifications →</span></a>
+    <a class="feature-card module-card" href="settings-audit.html"><span class="icon">⚙</span><h3>Settings and audit</h3><p>Manage preferences and inspect the recorded activity log.</p><span class="text-link">Open settings →</span></a>
+  </div>
+</section>
+
+<!-- DASHBOARD PREVIEW -->
+<section class="section-light section-pad" id="dashboard">
+  <div class="section-heading">
+    <span class="eyebrow">REPORTS AND DASHBOARD / अहवाल आणि डॅशबोर्ड</span>
+    <h2>See the whole operation at a glance</h2>
+    <p>Every figure comes from the same attendance, payroll and invoice records. Sample data shown.</p>
+  </div>
+
+  <div class="dashboard-preview">
+    <div class="metric-grid">
+      <div class="metric"><span>Guards on duty today</span><strong>42</strong></div>
+      <div class="metric"><span>Active sites</span><strong>18</strong></div>
+      <div class="metric"><span>Open incidents</span><strong>3</strong></div>
+      <div class="metric"><span>Invoices pending</span><strong>7</strong></div>
+    </div>
+
+    <div class="dashboard-columns">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Guard</th><th>Site</th><th>Shift</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Guard 001</td><td>Site A</td><td>08:00–16:00</td><td><span class="status present">Present</span></td></tr>
+            <tr><td>Guard 002</td><td>Site B</td><td>08:00–16:00</td><td><span class="status late">Late</span></td></tr>
+            <tr><td>Guard 003</td><td>Site C</td><td>20:00–06:00</td><td><span class="status scheduled">Scheduled</span></td></tr>
+            <tr><td>Guard 004</td><td>Site A</td><td>20:00–06:00</td><td><span class="status scheduled">Scheduled</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="chart-panel">
+        <h3>Attendance this week</h3>
+        <div class="bar-chart" aria-label="Sample weekly attendance chart">
+          <div style="height:55%"><span>Mon</span></div>
+          <div style="height:72%"><span>Tue</span></div>
+          <div style="height:62%"><span>Wed</span></div>
+          <div class="highlight-bar" style="height:88%"><span>Thu</span></div>
+          <div style="height:70%"><span>Fri</span></div>
+          <div class="weekend" style="height:40%"><span>Sat</span></div>
+          <div class="weekend" style="height:30%"><span>Sun</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-actions">
+      <a class="btn btn-dark" href="admin-dashboard.html">Admin Dashboard</a>
+      <a class="btn btn-dark" href="staff-dashboard.html">Staff Dashboard</a>
+      <a class="btn btn-dark" href="client-dashboard.html">Client Dashboard</a>
+    </div>
+  </div>
+</section>
+
+<!-- USER ROLES -->
+<section class="section-dark section-pad">
+  <div class="section-heading">
+    <span class="eyebrow">USER ROLES / वापरकर्ता भूमिका</span>
+    <h2>The right access for every person</h2>
+    <p>Permissions must be enforced on the server, not just hidden in the interface.</p>
+  </div>
+  <div class="grid grid-3">
+    <a class="feature-card role-card" href="admin-dashboard.html"><h3>Admin / Owner</h3><p>Approves payroll, finalizes invoices, manages users and roles, and reviews audit history and all reports.</p><span class="text-link">Open Admin Dashboard →</span></a>
+    <a class="feature-card role-card" href="staff-dashboard.html"><h3>Staff / Operator</h3><p>Creates guards and sites, builds the roster, records attendance and logs incidents day to day.</p><span class="text-link">Open Staff Dashboard →</span></a>
+    <a class="feature-card role-card" href="client-dashboard.html"><h3>Client</h3><p>Views guards on duty at their own sites, incident reports and invoices. Never sees other clients' data.</p><span class="text-link">Open Client Dashboard →</span></a>
+  </div>
+</section>
+
+<!-- WHY SWITCH -->
+<section class="section-dark section-pad why-section">
+  <div class="section-heading">
+    <span class="eyebrow">WHY SWITCH / बदल का करावा</span>
+    <h2>Registers and spreadsheets, replaced</h2>
+    <p>The same daily work, without lost pages, duplicate entries or late-night corrections.</p>
+  </div>
+  <div class="compare-grid">
+    <div class="compare-box before"><h3>BEFORE / आधी</h3><p>✕ Attendance in paper registers</p><p>✕ Duplicate entries and missing records</p><p>✕ Manual salary calculations</p><p>✕ Delayed client billing</p></div>
+    <div class="compare-box after"><h3>WITH SHIELDPOINT / प्रणालीमध्ये</h3><p>✓ One attendance record per shift</p><p>✓ Searchable records and history</p><p>✓ Payroll based on attendance</p><p>✓ Clear invoice status and audit trail</p></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-dark section-pad" id="faq">
+  <div class="section-heading">
+    <h2>Common questions / सामान्य प्रश्न</h2>
+    <p>Quick answers about how the system works.</p>
+  </div>
+  <div class="grid grid-2">
+    <article class="faq-card"><h3>Who can approve payroll?</h3><p>Only the Admin / Owner role. Staff can prepare records but cannot finalize financial transactions.</p></article>
+    <article class="faq-card"><h3>Can a client see other clients' data?</h3><p>No. A client should see only the guards, incidents and invoices for their own sites. Enforce this in the backend.</p></article>
+    <article class="faq-card"><h3>Is the GPS check-in real?</h3><p>This frontend demonstrates the workflow. Real device GPS and server validation must be added separately.</p></article>
+    <article class="faq-card"><h3>Can a finalized invoice be deleted?</h3><p>In the intended system, finalized invoices are locked and changes should remain traceable.</p></article>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section-light section-pad" id="pricing">
+  <div class="section-heading">
+    <span class="eyebrow">PRICING / किंमत</span>
+    <h2>A plan that fits your team size</h2>
+    <p>Every plan has the full workflow. Pricing depends on your number of guards and sites, so request a quote.</p>
+  </div>
+
+  <div class="grid grid-3 pricing-grid">
+    <article class="price-card"><span class="plan-label">STARTER</span><h3>[Price]</h3><p>Small agencies · up to [X] guards</p><ul><li>Roster and attendance</li><li>Payroll and invoices</li><li>Basic reports</li></ul></article>
+    <article class="price-card recommended"><span class="plan-label">GROWING <b>RECOMMENDED</b></span><h3>[Price]</h3><p>Growing agencies · up to [Y] guards</p><ul><li>Everything in Starter</li><li>Geofence attendance</li><li>Client login and audit trail</li></ul></article>
+    <article class="price-card"><span class="plan-label">ENTERPRISE</span><h3>Custom</h3><p>Large operations · many sites</p><ul><li>Everything in Growing</li><li>Setup and data import help</li><li>Priority support</li></ul></article>
+  </div>
+
+  <div class="quote-panel">
+    <div>
+      <span class="eyebrow">REQUEST A QUOTE / कोटेशन मागवा</span>
+      <h2>Tell us about your agency</h2>
+      <p>Share your guard and site count. We will send a quote and show you the full workflow.</p>
+    </div>
+    <form id="quoteForm" class="form-grid">
+      <label>Name<input name="name" required placeholder="Your full name"></label>
+      <label>Agency name<input name="agency" required placeholder="Agency name"></label>
+      <label>Email<input name="email" type="email" required placeholder="name@agency.com"></label>
+      <label>Phone<input name="phone" required placeholder="Phone number"></label>
+      <label>Number of guards<input name="guards" type="number" min="1" required placeholder="e.g. 40"></label>
+      <label>Number of sites<input name="sites" type="number" min="1" required placeholder="e.g. 12"></label>
+      <button class="btn btn-gold full span-2" type="submit">Request a quote / कोटेशन मागवा</button>
+      <p class="form-note span-2" id="quoteMessage"></p>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section section-dark section-pad" id="contact">
+  <div class="contact-copy">
+    <span class="eyebrow">GET IN TOUCH / संपर्क</span>
+    <h2>Run your agency from one place</h2>
+    <p>Tell us about your guards and sites. We will set up your system and show you the full workflow.</p>
+  </div>
+
+  <div class="contact-card">
+    <h2>Contact us / संपर्क करा</h2>
+    <p class="muted">We reply within one working day.</p>
+    <form id="contactForm">
+      <label>Name / नाव<input name="name" required placeholder="Your full name"></label>
+      <label>Email / ईमेल<input name="email" type="email" required placeholder="name@company.com"></label>
+      <label>Message / संदेश<textarea name="message" rows="4" required placeholder="How many guards and sites do you manage?"></textarea></label>
+      <button class="btn btn-dark full" type="submit">Send message / संदेश पाठवा</button>
+      <p class="form-note" id="contactMessage"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <span>ShieldPoint Security · Management System</span>
+  <span>[Agency address] · [Phone] · [Email]</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guard and Site Setup | ShieldPoint</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="index.html">⬡ ShieldPoint Security</a>
+<a class="btn btn-gold" href="index.html">Home / मुख्यपृष्ठ</a>
+</header>
+<main class="page-shell">
+<header class="page-header">
+<a href="index.html#workflow">← Back to workflow / कार्यप्रवाहाकडे परत</a>
+<h1>1. Guard and Site Setup</h1>
+<p>रक्षक, ग्राहक आणि सुरक्षा साइटची नोंदणी करा.</p>
+</header>
+<section class="form-panel">
+<h2>Registration Form / नोंदणी फॉर्म</h2>
+<form data-record-key="guards">
+<div class="form-grid-3">
+<label>Record Type / नोंदीचा प्रकार
+<select name="type" required><option value="">Select / निवडा</option><option>Guard / रक्षक</option><option>Client / ग्राहक</option><option>Site / साइट</option></select></label>
+<label>Unique ID / अद्वितीय ID<input name="id" required placeholder="GRD001"></label>
+<label>Full Name / पूर्ण नाव<input name="name" required></label>
+<label>Mobile / मोबाईल<input name="mobile" type="tel" required pattern="[0-9+() -]{7,18}"></label>
+<label>Email / ईमेल<input name="email" type="email"></label>
+<label>Address / पत्ता<input name="address"></label>
+<label>Site Name / साइटचे नाव<input name="site"></label>
+<label>Joining / Start Date / प्रारंभ तारीख<input name="startDate" type="date" required></label>
+<label>Status / स्थिती<select name="status" required><option>Active / सक्रिय</option><option>Inactive / निष्क्रिय</option><option>Pending / प्रलंबित</option></select></label>
+</div>
+<button class="btn btn-gold" type="submit">Save Record / नोंद जतन करा</button>
+<p class="message" aria-live="polite"></p>
+</form>
+</section>
+<section class="records-panel">
+<h2>Saved Records / जतन केलेल्या नोंदी</h2>
+<table data-record-table="guards" data-columns="id,type,name,mobile,site,status"><thead></thead><tbody></tbody></table>
+</section>
+</main>
+</body>
+</html>

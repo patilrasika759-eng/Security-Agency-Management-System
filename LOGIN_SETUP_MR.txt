@@ -1,0 +1,20 @@
+SECURITY AGENCY MANAGEMENT SYSTEM — LOGIN FIX
+
+महत्त्वाचे: हे local college-project demo आहे; production साठी वापरू नका.
+
+चालू करण्याची पद्धत:
+1. ZIP extract करा.
+2. MongoDB चालू ठेवा (तुझा database URI backend/.env मध्ये कायम ठेवला आहे).
+3. VS Code मध्ये Security_Gurad_Agency/backend folder उघडा.
+4. Terminal मध्ये: npm install
+5. नंतर: npm start
+6. frontend/login.html हे Live Server ने उघडा.
+7. खालील demo credentials वापरा. Role tab निवडून त्याच role चे credentials टाका.
+
+Admin: admin@shieldpoint.local / Admin@123
+Staff: staff@shieldpoint.local / Staff@123
+Client: client@shieldpoint.local / Client@123
+
+जर credentials बदलायचे असतील तर backend/.env मधील ADMIN_EMAIL, ADMIN_PASSWORD, STAFF_EMAIL, STAFF_PASSWORD, CLIENT_EMAIL, CLIENT_PASSWORD बदला. JWT_SECRET सुद्धा बदला. हे demo credentials आहेत; ZIP इतरांना पाठवण्याआधी बदलणे आवश्यक आहे.
+
+टीप: login endpoint backend वर तपासणी करतो आणि Staff/Client साठी starter dashboard उघडतो. Admin dashboard ची मूळ file जशी होती तशीच ठेवली आहे. Project मधील इतर काही modules अजून demo/browser-only असू शकतात.
